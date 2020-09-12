@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DaPigGuy\PiggyFactions\claims;
 
+use Kyle\FactionsWar\MainWar;
 use DaPigGuy\PiggyFactions\event\claims\ChunkOverclaimEvent;
 use DaPigGuy\PiggyFactions\event\claims\ClaimChunkEvent;
 use DaPigGuy\PiggyFactions\event\claims\UnclaimChunkEvent;
@@ -35,6 +36,15 @@ class ClaimsListener implements Listener
 
     public function onBreak(BlockBreakEvent $event): void
     {
+        $playerFac = PlayerManager::getInstance()->getPlayerFaction($event->getPlayer()->getUniqueId())->getName();
+        $position = $event->getBlock();
+        $id = $event->getBlock()->getId();
+        $raidFac = $claim->getFaction()->getName();
+        $a = FactionsWar::getInstance()->canEdit($playerFac, $raidFac, $id);
+        if($a == true){
+	    $event->setCancelled(false);
+	    return;
+	}		
         if (!$this->canAffectArea($event->getPlayer(), $event->getBlock())) $event->setCancelled();
     }
 
