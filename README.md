@@ -4,6 +4,9 @@
 
 PiggyFactions is an open-sourced factions plugin for [PocketMine-MP](https://github.com/pmmp/PocketMine-MP).
 
+## Custom raids
+/raid command has been added, it teleports all online members from both factions for automatic raids, and adds automatic raids on death. 
+
 ## Disclaimer
 PiggyFactions is currently in beta. While we have tested quite thoroughly, there may exist some bugs. Please report any issue on GitHub.
 
